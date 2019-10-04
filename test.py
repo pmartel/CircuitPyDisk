@@ -25,7 +25,9 @@ for idx in range(length):
 output_wave = audioio.RawSample(samples_xy, channel_count=2,sample_rate= baseFreq * length)
 output_wave2 = audioio.RawSample(samples_xy2, channel_count=2,sample_rate= baseFreq * length)
 while True:
-	dacs.play(output_wave, loop=True)
-	time.sleep(sleepTime)
-	dacs.play(output_wave2, loop=True)
-	time.sleep(sleepTime)
+    t1 = time.monotonic_ns()
+    dacs.play(output_wave, loop=True)
+    time.sleep(sleepTime)
+    print( str(time.monotonic_ns())," ",str(t1))
+    dacs.play(output_wave2, loop=True)
+    time.sleep(sleepTime)
